@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "username";
-$password = "password";
-$dbname = "Dbase";
+$password = "";
+$dbname = "db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,11 +14,11 @@ if ($conn->connect_error) {
 // sql to create table
 $sql = "CREATE TABLE Dbase (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-users VARCHAR(30) NOT NULL,
+users VARCHAR(50) NOT NULL,
 appointments VARCHAR(30) NOT NULL,
 services VARCHAR(30) NOT NULL,
 promotions VARCHAR(30) NOT NULL,
-reviews VARCHAR(30) NOT NULLs
+reviews VARCHAR(30) NOT NULL
 )";
 
 if ($conn->query($sql) === TRUE) {
