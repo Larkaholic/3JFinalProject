@@ -1,13 +1,12 @@
 <?php
 // Database connection
-$host = 'localhost'; 
+$host = '127.0.0.1'; 
 $socket = '/data/data/com.termux/files/usr/var/run/mysqld.sock';
-
 $db = 'booking_system';
 $user = 'root';
 $password = 'larkaholic';
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;unix_socket=$socket", $user, $password);
+    $pdo = new PDO("mysql:unix_socket=$socket;dbname=$db", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Error: Could not connect to the database. " . $e->getMessage());
