@@ -1,10 +1,13 @@
 let navbar = document.querySelector('.navbar');
+const searchForm = document.querySelector('.search-form');
+const cartItem = document.querySelector('.cart-item');
 
-document.querySelector('#menu-btn').onclick = () =>{
+document.querySelector('#menu-btn').onclick = () => {
     navbar.classList.toggle('active');
     searchForm.classList.remove('active');
     cartItem.classList.remove('active');
 }
+
 const monthYear = document.getElementById("month-year");
 const datesContainer = document.getElementById("dates");
 const prevMonthBtn = document.getElementById("prev-month");
