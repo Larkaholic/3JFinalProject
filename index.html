@@ -10,14 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
     
 <!-- header section starts  -->
 
 <header class="header">
-
     <a href="#" class="logo">
         <img src="img/logo.png" alt="">
     </a>
@@ -34,13 +32,14 @@
         <div class="fas fa-bars" id="menu-btn"></div>
     </div>
 </header>
-<!--home section-->
 
+<!-- home section-->
 <section class="home" id="home">
     <div class="content">
         <h3>Aubrey's Insight Full Therapy</h3>       
     </div>
 </section>
+
 <!-- about-->
 <section class="about" id="about">
     <h1 class="heading"> <span>about</span> us </h1>
@@ -52,107 +51,26 @@
             <h3>Welcome to Aubrey's Insight Full Therapy</h3>
             <p>“Wellness is not a destination, but a journey of self-discovery and healing. Embrace each step with compassion and courage.”</p>
             <a href="#contact" class="btn">Book Now</a>
-            
         </div>
     </div>
 </section>
+
 <!-- menu section-->
- <section class="menu" id="Services">
+<section class="menu" id="Services">
     <h1 class="heading"> Our<span> Services</span> </h1>
     <div class="box-container">
-        <div class="box">
-            <img src="img/Half.png" alt="" width="100%">
-            <h3>Half Body Massage</h3>
-            <div class="price">₱800.00 <!--<span>20.99</span>>-->
-                <br>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i></div>
-        </div>
-
-        <div class="box">
-            <img src="img/Full.jpg" alt="" width="105%">
-            <h3>Full Body Massage</h3>
-            <div class="price">₱1200.00 <!--<span>20.99</span>>-->
-                <br>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i></div>
-        </div>
-
-        <div class="box">
-            <img src="img/VIP.jpg" alt="" width="100%">
-            <h3>VIP Massage</h3>
-            <div class="price">₱1800.00 <!--<span>20.99</span>>-->
-                <br>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i></div>
-        </div>
-
-        
-        </div>
+        <!-- Service Boxes Here -->
     </div>
 </section>
-<!--products-->
+
+<!-- products-->
 <section class="products" id="Others">
     <h1 class="heading"> our <span>products</span> </h1>
     <div class="box-container">
-        <div class="box">
-            <div class="image">
-                <img src="img/Ven.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Ventosa Massage</h3>
-                <div class="price">₱1000.00
-                    <br>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i></div>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="img/hot.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Hot Stone Massage</h3>
-                <div class="price">₱950.00
-                    <br>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i></div>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="img/chair.avif" alt="" width="100%">
-            </div>
-            <div class="content">
-                <h3>Massage Chair</h3>
-                <div class="price">₱600.00
-                    <br>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i></div>
-            </div>            
-        </div>   
+        <!-- Product Boxes Here -->
     </div>
 </section>
+
 <!-- contact section-->
 <section class="contact" id="contact">
     <h1 class="heading"> <span>contact</span> us </h1>
@@ -200,7 +118,8 @@
         </form>
     </div>
 </section>
-<!--footer section-->
+
+<!-- footer section-->
 <section class="footer">
     <div class="links">
         <a href="#home">home</a>
@@ -212,59 +131,8 @@
     <div class="credit">created by <span>KyDev</span> | all rights reserved</div>
 </section>
 
-<script>
-// Calendar Logic
-const dateInput = document.getElementById("selected-date");
-const datesContainer = document.getElementById("dates");
-const monthYearDisplay = document.getElementById("month-year");
-let currentDate = new Date();
-
-function renderCalendar() {
-    let month = currentDate.getMonth();
-    let year = currentDate.getFullYear();
-
-    // Set the month and year on the calendar header
-    monthYearDisplay.innerHTML = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
-
-    // Get the first day of the month and the number of days in the month
-    const firstDayOfMonth = new Date(year, month, 1);
-    const lastDayOfMonth = new Date(year, month + 1, 0);
-    const totalDays = lastDayOfMonth.getDate();
-    const startingDay = firstDayOfMonth.getDay();
-
-    // Generate the days in the calendar
-    let datesHTML = '';
-    for (let i = 0; i < startingDay; i++) {
-        datesHTML += '<div class="calendar-day"></div>'; // Empty cells before the 1st day
-    }
-
-    for (let i = 1; i <= totalDays; i++) {
-        datesHTML += `<div class="calendar-day" onclick="selectDate(${i})">${i}</div>`;
-    }
-
-    datesContainer.innerHTML = datesHTML;
-}
-
-function selectDate(day) {
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
-    dateInput.value = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-}
-
-// Navigation for the calendar
-document.getElementById("prev-month").addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar();
-});
-
-document.getElementById("next-month").addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar();
-});
-
-renderCalendar(); // Initial render of the calendar
-</script>
-
+<!-- Link to external JS file -->
 <script src="js/script.js"></script>
+
 </body>
 </html>

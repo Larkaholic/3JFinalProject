@@ -1,3 +1,5 @@
+// calendar.js
+
 let navbar = document.querySelector('.navbar');
 const searchForm = document.querySelector('.search-form');
 const cartItem = document.querySelector('.cart-item');
