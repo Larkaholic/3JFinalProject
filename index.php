@@ -15,7 +15,6 @@ try {
 $servicesQuery = $pdo->query("SELECT * FROM services");
 $services = $servicesQuery->fetchAll(PDO::FETCH_ASSOC);
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? null;
     $email = $_POST['email'] ?? null;
@@ -26,11 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error: Missing required fields.");
     }
 
+    // Sanitize input data
     $name = htmlspecialchars($name);
     $email = htmlspecialchars($email);
     $phone = htmlspecialchars($phone);
     $date = htmlspecialchars($date);
 
+    // Insert the booking data into the database
+    $stmt = $pdo->prepare("INSERT INTO bookings (name, email, phone, date) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$name, $email, $phone, $date]);
+
+    // Confirmation message after successful submission
+    $successMessage = "Booking successfully created for $name on $date!";
 }
 ?>
 
@@ -135,6 +141,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <input type="submit" value="Book Now" class="btn">
         </form>
+        <!-- Display success message -->
+        <?php if (isset($successMessage)): ?>
+            <div class="success-message">
+                <p><?= htmlspecialchars($successMessage) ?></p>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 
