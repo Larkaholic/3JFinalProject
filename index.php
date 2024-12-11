@@ -5,6 +5,7 @@ $socket = '/data/data/com.termux/files/usr/var/run/mysqld.sock';
 $db = 'booking_system';
 $user = 'root';
 $password = 'larkaholic';
+
 try {
     $pdo = new PDO("mysql:unix_socket=$socket;dbname=$db", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,29 +16,28 @@ try {
 $servicesQuery = $pdo->query("SELECT * FROM services");
 $services = $servicesQuery->fetchAll(PDO::FETCH_ASSOC);
 
+// Handle the form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? null;
     $email = $_POST['email'] ?? null;
     $phone = $_POST['phone'] ?? null;
     $date = $_POST['date'] ?? null;
+    $time = $_POST['time'] ?? null;
 
-    if (!$name || !$email || !$phone || !$date) {
-        die("Error: Missing required fields.");
+    // Validate inputs
+    if (!$name || !$email || !$phone || !$date || !$time) {
+        $message = "Error: Missing required fields.";
+    } else {
+        // Insert the data into the database
+        $stmt = $pdo->prepare("INSERT INTO appointments (name, email, phone, date, time) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$name, $email, $phone, $date, $time]);
+        $message = "Your appointment was successfully booked!";
     }
-
-    // Sanitize input data
-    $name = htmlspecialchars($name);
-    $email = htmlspecialchars($email);
-    $phone = htmlspecialchars($phone);
-    $date = htmlspecialchars($date);
-
-    // Insert the booking data into the database
-    $stmt = $pdo->prepare("INSERT INTO bookings (name, email, phone, date) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$name, $email, $phone, $date]);
-
-    // Confirmation message after successful submission
-    $successMessage = "Booking successfully created for $name on $date!";
 }
+
+// Fetch all appointments
+$appointmentsQuery = $pdo->query("SELECT * FROM appointments");
+$appointments = $appointmentsQuery->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -48,20 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <title>Aubrey's Insight Full Therapy</title>
-    <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-<!-- header section starts  -->
 
+<!-- header section starts -->
 <header class="header">
     <a href="#" class="logo">
         <img src="img/logo.png" alt="">
     </a>
-
     <nav class="navbar">
         <a href="#home">home</a>
         <a href="#about">about</a>
@@ -69,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="#Others">Others</a>
         <a href="#contact">contact</a>
     </nav>
-
     <div class="icons">
         <div class="fas fa-bars" id="menu-btn"></div>
     </div>
@@ -119,7 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- contact section -->
 <section class="contact" id="contact">
     <h1 class="heading"> <span>contact</span> us </h1>
-
     <div class="row">
         <form action="book.php" method="POST">
             <h3>Set Schedule</h3>
@@ -139,15 +133,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="fas fa-calendar"></span>
                 <input type="date" name="date" placeholder="Select a date" required>
             </div>
+            <div class="inputBox">
+                <span class="fas fa-clock"></span>
+                <input type="time" name="time" placeholder="Select time" required>
+            </div>
             <input type="submit" value="Book Now" class="btn">
         </form>
-        <!-- Display success message -->
-        <?php if (isset($successMessage)): ?>
-            <div class="success-message">
-                <p><?= htmlspecialchars($successMessage) ?></p>
-            </div>
-        <?php endif; ?>
     </div>
+
+    <!-- Display message -->
+    <?php if (isset($message)): ?>
+        <div class="message">
+            <p><?= $message ?></p>
+        </div>
+    <?php endif; ?>
+
+    <!-- Appointments Table -->
+    <h3>Scheduled Appointments</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($appointments as $appointment): ?>
+                <tr>
+                    <td><?= htmlspecialchars($appointment['name']) ?></td>
+                    <td><?= htmlspecialchars($appointment['email']) ?></td>
+                    <td><?= htmlspecialchars($appointment['phone']) ?></td>
+                    <td><?= htmlspecialchars($appointment['date']) ?></td>
+                    <td><?= htmlspecialchars($appointment['time']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </section>
 
 <!-- footer section -->
