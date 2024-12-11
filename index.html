@@ -178,23 +178,23 @@
             </div>
         </div>
        
-        <form action="process_booking.php" method="POST">
+        <form action="">
             <h3>Set Schedule</h3>
             <div class="inputBox">
                 <span class="fas fa-user"></span>
-                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" placeholder="name">
             </div>
             <div class="inputBox">
                 <span class="fas fa-envelope"></span>
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" placeholder="email">
             </div>
             <div class="inputBox">
                 <span class="fas fa-phone"></span>
-                <input type="number" name="phone" placeholder="Phone Number" required>
+                <input type="number" placeholder="number">
             </div>
             <div class="inputBox">
-                <span class="fas fa-calendar-alt"></span>
-                <input type="date" name="date" placeholder="Select Date" required>
+                <span class="fas fa-calendar"></span>
+                <input type="text" id="selected-date" placeholder="Select Date" readonly>
             </div>
             <input type="submit" value="Book Now" class="btn">
         </form>
@@ -211,6 +211,60 @@
     </div>
     <div class="credit">created by <span>KyDev</span> | all rights reserved</div>
 </section>
+
+<script>
+// Calendar Logic
+const dateInput = document.getElementById("selected-date");
+const datesContainer = document.getElementById("dates");
+const monthYearDisplay = document.getElementById("month-year");
+let currentDate = new Date();
+
+function renderCalendar() {
+    let month = currentDate.getMonth();
+    let year = currentDate.getFullYear();
+
+    // Set the month and year on the calendar header
+    monthYearDisplay.innerHTML = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+
+    // Get the first day of the month and the number of days in the month
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    const totalDays = lastDayOfMonth.getDate();
+    const startingDay = firstDayOfMonth.getDay();
+
+    // Generate the days in the calendar
+    let datesHTML = '';
+    for (let i = 0; i < startingDay; i++) {
+        datesHTML += '<div class="calendar-day"></div>'; // Empty cells before the 1st day
+    }
+
+    for (let i = 1; i <= totalDays; i++) {
+        datesHTML += `<div class="calendar-day" onclick="selectDate(${i})">${i}</div>`;
+    }
+
+    datesContainer.innerHTML = datesHTML;
+}
+
+function selectDate(day) {
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    dateInput.value = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+}
+
+// Navigation for the calendar
+document.getElementById("prev-month").addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+});
+
+document.getElementById("next-month").addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+});
+
+renderCalendar(); // Initial render of the calendar
+</script>
+
 <script src="js/script.js"></script>
 </body>
 </html>
