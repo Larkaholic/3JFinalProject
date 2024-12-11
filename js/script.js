@@ -1,30 +1,19 @@
-let navbar = document.querySelector('.navbar');
-const searchForm = document.querySelector('.search-form');
-const cartItem = document.querySelector('.cart-item');
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 const monthYear = document.getElementById("month-year");
 const datesContainer = document.getElementById("dates");
 const prevMonthBtn = document.getElementById("prev-month");
 const nextMonthBtn = document.getElementById("next-month");
 const appointmentDateField = document.getElementById("appointment-date");
+const serviceField = document.getElementById("service-field");
 const bookingForm = document.getElementById("booking-form");
-const appointmentsTableBody = document.querySelector("#appointments-table tbody");
 
-let currentDate = new Date();
-let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear();
-
-document.querySelector('#menu-btn').onclick = () => {
-    navbar.classList.toggle('active');
-    searchForm.classList.remove('active');
-    cartItem.classList.remove('active');
-}
-
-// Event listener for service selection (this should be set up for the buttons in the services section if needed)
+// Event listener for service selection
 document.querySelectorAll(".service-btn").forEach(button => {
     button.addEventListener("click", () => {
         const service = button.getAttribute("data-service");
-        serviceInput.value = service;
-        serviceField.value = service;  // Set service in the form field
+        serviceField.value = service;
     });
 });
 
@@ -88,29 +77,20 @@ nextMonthBtn.addEventListener("click", () => {
 // Initial render
 renderCalendar();
 
-// Handle form submission (for booking)
+// Handle form submission
 bookingForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
     const appointmentDate = appointmentDateField.value;
+    const service = serviceField.value;
 
-    if (!name || !email || !phone || !appointmentDate) {
-        alert("Please fill in all the fields.");
-        return;
+    if (name && email && phone && appointmentDate && service) {
+        alert(`Booking confirmed for ${name} on ${appointmentDate} for ${service}`);
+        bookingForm.reset();
+        serviceField.value = "";
+    } else {
+        alert("Please fill all the fields.");
     }
-
-    // Add the appointment to the table
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td>${name}</td>
-        <td>${email}</td>
-        <td>${phone}</td>
-        <td>${appointmentDate}</td>
-    `;
-    appointmentsTableBody.appendChild(row);
-
-    // Clear form after submission
-    bookingForm.reset();
 });

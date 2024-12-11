@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <title>Aubrey's Insight Full Therapy</title>
-    <!-- font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- custom css file link -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -60,50 +58,19 @@
             <img src="img/Half.png" alt="" width="100%">
             <h3>Half Body Massage</h3>
             <div class="price">₱800.00</div>
+            <button class="service-btn" data-service="Half Body Massage">Select</button>
         </div>
         <div class="box">
             <img src="img/Full.jpg" alt="" width="105%">
             <h3>Full Body Massage</h3>
             <div class="price">₱1200.00</div>
+            <button class="service-btn" data-service="Full Body Massage">Select</button>
         </div>
         <div class="box">
             <img src="img/VIP.jpg" alt="" width="100%">
             <h3>VIP Massage</h3>
             <div class="price">₱1800.00</div>
-        </div>
-    </div>
-</section>
-
-<!-- Products section -->
-<section class="products" id="Others">
-    <h1 class="heading"> our <span>products</span> </h1>
-    <div class="box-container">
-        <div class="box">
-            <div class="image">
-                <img src="img/Ven.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Ventosa Massage</h3>
-                <div class="price">₱1000.00</div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="image">
-                <img src="img/hot.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Hot Stone Massage</h3>
-                <div class="price">₱950.00</div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="image">
-                <img src="img/chair.avif" alt="" width="100%">
-            </div>
-            <div class="content">
-                <h3>Massage Chair</h3>
-                <div class="price">₱600.00</div>
-            </div>
+            <button class="service-btn" data-service="VIP Massage">Select</button>
         </div>
     </div>
 </section>
@@ -145,6 +112,14 @@
             <div class="inputBox">
                 <span class="fas fa-phone"></span>
                 <input type="number" id="phone" placeholder="number" required>
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-calendar"></span>
+                <input type="date" id="appointment-date" placeholder="Select a date" required readonly>
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-cogs"></span>
+                <input type="text" id="service-field" placeholder="Selected Service" readonly required>
             </div>
             <input type="submit" value="Book Now" class="btn">
         </form>
