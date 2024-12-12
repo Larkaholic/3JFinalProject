@@ -9,22 +9,12 @@ const appointmentDateField = document.getElementById("appointment-date");
 const serviceField = document.getElementById("service-field");
 const bookingForm = document.getElementById("booking-form");
 
-// Event listener for service selection
-document.querySelectorAll(".service-box").forEach(box => {
-    box.addEventListener("click", () => {
-        const service = box.getAttribute("data-service");
-        serviceField.value = service;
-    });
-});
-
 // Event listener for "Avail" button functionality
 document.querySelectorAll(".avail-button").forEach(button => {
     button.addEventListener("click", (event) => {
-        const serviceBox = event.target.closest(".service-box");
-        if (serviceBox) {
-            const service = serviceBox.getAttribute("data-service");
-            serviceField.value = service;
-        }
+        const service = event.target.getAttribute("data-service");
+        serviceField.value = service; // Set the selected service in the form
+        alert(`Selected Service: ${service}`); // Optional confirmation
     });
 });
 
