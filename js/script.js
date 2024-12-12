@@ -9,19 +9,13 @@ const appointmentDateField = document.getElementById("appointment-date");
 const serviceField = document.getElementById("service-field");
 const bookingForm = document.getElementById("booking-form");
 
-
-// Event listener for "Avail" button functionality
+// Event listener for service selection
 document.querySelectorAll(".service-btn").forEach(button => {
-    button.addEventListener("click", (event) => {
+    button.addEventListener("click", () => {
         const service = button.getAttribute("data-service");
-        if (service) {
-            serviceField.value = service; // Set the service field value
-        } else {
-            console.error("Service data not found on button.");
-        }
+        serviceField.value = service;
     });
 });
-
 
 // Calendar rendering function
 function renderCalendar() {
