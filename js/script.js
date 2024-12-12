@@ -17,6 +17,17 @@ document.querySelectorAll(".service-box").forEach(box => {
     });
 });
 
+// Event listener for "Avail" button functionality
+document.querySelectorAll(".avail-button").forEach(button => {
+    button.addEventListener("click", (event) => {
+        const serviceBox = event.target.closest(".service-box");
+        if (serviceBox) {
+            const service = serviceBox.getAttribute("data-service");
+            serviceField.value = service;
+        }
+    });
+});
+
 // Calendar rendering function
 function renderCalendar() {
     monthYear.innerText = `${currentDate.toLocaleString('default', { month: 'long' })} ${currentYear}`;
