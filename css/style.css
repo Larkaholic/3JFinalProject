@@ -515,5 +515,15 @@ section{
     transition: all 0.3s ease-in-out;
     margin-top: 1rem;
 }
+.service-btn:hover {
+    background: #b38d6b; /* Slightly darker shade of the main color */
+    letter-spacing: 0.1rem;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(211, 173, 127, 0.6);
+}
 
+.service-btn:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(211, 173, 127, 0.8);
+}
 
