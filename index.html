@@ -58,86 +58,73 @@
             <img src="img/Half.png" alt="" width="100%">
             <h3>Half Body Massage</h3>
             <div class="price">₱800.00</div>
-            <button class="service-btn" data-service="Half Body Massage">Avail</button>
+            <button class="service-btn" data-service="Half Body Massage">Select</button>
         </div>
         <div class="box">
             <img src="img/Full.jpg" alt="" width="105%">
             <h3>Full Body Massage</h3>
             <div class="price">₱1200.00</div>
-            <button class="service-btn" data-service="Full Body Massage">Avail</button>
+            <button class="service-btn" data-service="Full Body Massage">Select</button>
         </div>
         <div class="box">
             <img src="img/VIP.jpg" alt="" width="100%">
             <h3>VIP Massage</h3>
             <div class="price">₱1800.00</div>
-            <button class="service-btn" data-service="VIP Massage">Avail</button>
+            <button class="service-btn" data-service="VIP Massage">Select</button>
         </div>
     </div>
 </section>
 
-<!-- contact section -->
+<!-- Contact section -->
 <section class="contact" id="contact">
     <h1 class="heading"> <span>contact</span> us </h1>
     <div class="row">
-        <form action="" method="POST">
+        <div class="calendar">
+            <div class="calendar-header">
+                <button id="prev-month">❮</button>
+                <div id="month-year"></div>
+                <button id="next-month">❯</button>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-weekdays">
+                    <div>Mo</div>
+                    <div>Tu</div>
+                    <div>We</div>
+                    <div>Th</div>
+                    <div>Fr</div>
+                    <div>Sa</div>
+                    <div>Su</div>
+                </div>
+                <div class="calendar-dates" id="dates"></div>
+            </div>
+        </div>
+
+        <form id="booking-form">
             <h3>Set Schedule</h3>
             <div class="inputBox">
                 <span class="fas fa-user"></span>
-                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" id="name" placeholder="name" required>
             </div>
             <div class="inputBox">
                 <span class="fas fa-envelope"></span>
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" id="email" placeholder="email" required>
             </div>
             <div class="inputBox">
                 <span class="fas fa-phone"></span>
-                <input type="text" name="phone" placeholder="Phone" required>
+                <input type="number" id="phone" placeholder="number" required>
             </div>
             <div class="inputBox">
                 <span class="fas fa-calendar"></span>
-                <input type="date" name="date" required>
+                <input type="date" id="appointment-date" placeholder="Select a date" required readonly>
             </div>
             <div class="inputBox">
-                <span class="fas fa-clock"></span>
-                <input type="time" name="time" required>
+                <span class="fas fa-cogs"></span>
+                <input type="text" id="service-field" placeholder="Selected Service" readonly required>
             </div>
             <input type="submit" value="Book Now" class="btn">
         </form>
     </div>
-
-    <!-- Display message -->
-    <?php if (!empty($message)): ?>
-        <div class="message">
-            <p><?= htmlspecialchars($message) ?></p>
-        </div>
-    <?php endif; ?>
-
-    <!-- Appointments Table -->
-    <h3>Scheduled Appointments</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Date</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($appointments as $appointment): ?>
-                <tr>
-                    <td><?= htmlspecialchars($appointment['name']) ?></td>
-                    <td><?= htmlspecialchars($appointment['email']) ?></td>
-                    <td><?= htmlspecialchars($appointment['phone']) ?></td>
-                    <td><?= htmlspecialchars($appointment['date']) ?></td>
-                    <td><?= htmlspecialchars($appointment['time']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 </section>
-
 
 <!-- Footer section -->
 <section class="footer">
