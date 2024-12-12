@@ -10,9 +10,9 @@ const serviceField = document.getElementById("service-field");
 const bookingForm = document.getElementById("booking-form");
 
 // Event listener for service selection
-document.querySelectorAll(".service-btn").forEach(button => {
-    button.addEventListener("click", () => {
-        const service = button.getAttribute("data-service");
+document.querySelectorAll(".service-box").forEach(box => {
+    box.addEventListener("click", () => {
+        const service = box.getAttribute("data-service");
         serviceField.value = service;
     });
 });
